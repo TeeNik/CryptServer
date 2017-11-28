@@ -16,6 +16,8 @@ public class UserService {
     }
 
     public synchronized void auth(User user, UUID id){
+        if(!users.contains(user)){
 
+        }
     }
 }

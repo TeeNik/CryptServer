@@ -25,6 +25,7 @@ public class Battle implements Runnable{
 
             while (true){
                 num++;
+
                 client.sendEvent("test", new TestObject(num));
                 System.out.println("Send: " + num);
 
