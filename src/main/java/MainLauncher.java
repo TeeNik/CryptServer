@@ -1,4 +1,6 @@
 import Battle.Battle;
+import Listaners.BattleListener;
+import Listaners.UserListener;
 import SocketObject.TestObject;
 import com.corundumstudio.socketio.AckRequest;
 import com.corundumstudio.socketio.Configuration;
@@ -26,6 +28,9 @@ public class MainLauncher {
 
 
         SocketIOServer server = new SocketIOServer(config);
+
+        UserListener.Init(server);
+        BattleListener.Init(server);
 
         server.addConnectListener(new ConnectListener() {
             public void onConnect(SocketIOClient client) {

@@ -11,7 +11,7 @@ import com.corundumstudio.socketio.listener.DataListener;
  */
 public class BattleListener {
 
-    static void Init(SocketIOServer s){
+    public static void Init(SocketIOServer s){
 
         s.addEventListener("spawnWarrior", SpawnObject.class, new DataListener<SpawnObject>() {
                     @Override

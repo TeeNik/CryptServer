@@ -10,22 +10,37 @@ import java.util.UUID;
  */
 public class User {
     UUID currentSessionId;
-    int id;
+    long id;
     Player player;
     boolean inSearchBattle;
+    String name;
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
     public SocketIOClient client;
 
-    public User(int id, Player player) {
+    public User(){
+
+    }
+
+    public User(long id, Player player, String name) {
         this.id = id;
         this.player = player;
+        this.name = name;
         inSearchBattle = false;
     }
 
-    public int getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(long id) {
         this.id = id;
     }
 
