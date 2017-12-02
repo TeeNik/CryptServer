@@ -16,8 +16,30 @@ public class UserService {
     }
 
     public synchronized void auth(User user, UUID id){
-        if(!users.contains(user)){
-
+        if(findUserBySessionId(id) == null){
+            user.setCurrentSessionId(id);
+            users.add(user);
         }
+    }
+
+    public synchronized void refuse(UUID id){
+        Iterator it = users.iterator();
+        while(it.hasNext()){
+            User user = (User)it.next();
+            if(user != null && user.getCurrentSessionId().equals(id)){
+                it.remove();
+            }
+        }
+    }
+
+    public synchronized User findUserBySessionId(UUID id) {
+        Iterator it = users.iterator();
+        while (it.hasNext()) {
+            User user = (User)it.next();
+            if (user != null && user.getCurrentSessionId().equals(id)) {
+                return  user;
+            }
+        }
+        return null;
     }
 }
