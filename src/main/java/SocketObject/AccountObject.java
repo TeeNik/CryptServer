@@ -5,7 +5,7 @@ package SocketObject;
  */
 public class AccountObject {
     String name;
-    long id;
+    int id;
 
     public String getName() {
         return name;
@@ -15,11 +15,11 @@ public class AccountObject {
         this.name = name;
     }
 
-    public long getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(int id) {
         this.id = id;
     }
 }

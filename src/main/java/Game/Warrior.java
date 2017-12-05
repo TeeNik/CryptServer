@@ -43,7 +43,13 @@ public class Warrior {
         this.x = x;
     }
 
-    public float moveX(float a){this.x += a;}
+    public void moveX(float a){
+        if(lookingLeft) {
+            this.x -= a;
+        } else {
+            this.x += a;
+        }
+    }
 
     public float getY() {
         return y;

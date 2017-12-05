@@ -1,8 +1,12 @@
 package Battle;
 
+import Game.Warrior;
 import SocketObject.TestObject;
 import User.User;
 import com.corundumstudio.socketio.SocketIOClient;
+
+import java.util.ArrayList;
+import java.util.Iterator;
 
 import static java.lang.Thread.sleep;
 
@@ -11,6 +15,8 @@ public class Battle implements Runnable{
 
     private User user_1;
     private User user_2;
+
+    private ArrayList<ArrayList<Warrior>> battleground = new ArrayList<ArrayList<Warrior>>(5);
 
     private int num = 0;
 
@@ -26,6 +32,16 @@ public class Battle implements Runnable{
         try {
 
             while (true){
+
+                for(int i = 0; i < 5; i++){
+                    Iterator it = battleground.get(i).iterator();
+                    while(it.hasNext()){
+                        Warrior w = (Warrior)it.next();
+                        w.moveX(1);
+                    }
+                }
+
+
                 num++;
 
                 client.sendEvent("test", new TestObject(num));

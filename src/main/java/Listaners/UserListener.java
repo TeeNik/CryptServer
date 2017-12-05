@@ -19,11 +19,13 @@ public class UserListener {
             @Override
             public void onData(SocketIOClient client, AccountObject data, AckRequest ackSender) throws Exception {
                 if(client != null && client.isChannelOpen()){
+                    System.out.println("Auth: " + data.getName());
                     User user = new User(data.getId(), new Player(), data.getName());
                     user.client = client;
                     UserService.getInstance().auth(user, client.getSessionId());
                     CallbackObject co = new CallbackObject();
                     co.setOk(true);
+                    co.setId(user.getId());
                     CallbackManager.getInstance().AddMsg(client, "auth", co);
                 }
             }

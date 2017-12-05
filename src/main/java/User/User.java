@@ -9,11 +9,11 @@ import java.util.UUID;
  * Created by teenik on 17.10.2017.
  */
 public class User {
-    UUID currentSessionId;
-    long id;
-    Player player;
-    boolean inSearchBattle;
-    String name;
+    private UUID currentSessionId;
+    private int id;
+    private Player player;
+    private boolean inSearchBattle;
+    private String name;
 
     public String getName() {
         return name;
@@ -29,18 +29,18 @@ public class User {
 
     }
 
-    public User(long id, Player player, String name) {
+    public User(int id, Player player, String name) {
         this.id = id;
         this.player = player;
         this.name = name;
         inSearchBattle = false;
     }
 
-    public long getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(int id) {
         this.id = id;
     }
 
