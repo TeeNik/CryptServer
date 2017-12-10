@@ -1,11 +1,10 @@
-import SocketObject.TestObject;
-import com.corundumstudio.socketio.AckRequest;
+import Callback.CallbackManager;
+import Listaners.BattleListener;
+import Listaners.UserListener;
 import com.corundumstudio.socketio.Configuration;
 import com.corundumstudio.socketio.SocketIOClient;
 import com.corundumstudio.socketio.SocketIOServer;
 import com.corundumstudio.socketio.listener.ConnectListener;
-import com.corundumstudio.socketio.listener.DataListener;
-import System.Debug;
 import com.corundumstudio.socketio.listener.DisconnectListener;
 
 /**
@@ -26,10 +25,13 @@ public class MainLauncher {
 
         SocketIOServer server = new SocketIOServer(config);
 
+        UserListener.Init(server);
+        BattleListener.Init(server);
+        CallbackManager.getInstance().Init();
+
         server.addConnectListener(new ConnectListener() {
             public void onConnect(SocketIOClient client) {
                 System.out.println("Connect: " + client);
-                new Thread(new Battle(client)).start();
             }
         });
 
@@ -39,16 +41,7 @@ public class MainLauncher {
             }
         });
 
-        server.addEventListener("test", TestObject.class, new DataListener<TestObject>() {
-            public void onData(SocketIOClient client, TestObject data, AckRequest ackRequest){
-                Debug.Log("we got test object");
-            }
-        });
-
         server.startAsync();
-
-        System.out.println("HERE");
-
 
         Thread.sleep(Integer.MAX_VALUE);
         /*Thread.sleep(Integer.MAX_VALUE);

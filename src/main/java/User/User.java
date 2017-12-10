@@ -1,18 +1,38 @@
 package User;
 
 import Game.Player;
+import com.corundumstudio.socketio.SocketIOClient;
+
+import java.util.UUID;
 
 /**
  * Created by teenik on 17.10.2017.
  */
 public class User {
-    int id;
-    Player player;
-    boolean inSearchBattle;
+    private UUID currentSessionId;
+    private int id;
+    private Player player;
+    private boolean inSearchBattle;
+    private String name;
 
-    public User(int id, Player player) {
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public SocketIOClient client;
+
+    public User(){
+
+    }
+
+    public User(int id, Player player, String name) {
         this.id = id;
         this.player = player;
+        this.name = name;
         inSearchBattle = false;
     }
 
@@ -39,6 +59,10 @@ public class User {
     public void setInSearchBattle(boolean g) {
         this.inSearchBattle = g;
     }
+
+    public UUID getCurrentSessionId(){return currentSessionId;}
+
+    public void setCurrentSessionId(UUID id){ currentSessionId = id;}
 
 }
 
