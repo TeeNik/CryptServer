@@ -11,6 +11,19 @@ public class Warrior {
     float y;
     boolean lookingLeft;
 
+    public Warrior(){
+
+    }
+
+    public Warrior(int type, int hp, int reload, float x, float y, boolean lookingLeft) {
+        this.type = type;
+        this.hp = hp;
+        this.reload = reload;
+        this.x = x;
+        this.y = y;
+        this.lookingLeft = lookingLeft;
+    }
+
     public int getType() {
         return type;
     }
