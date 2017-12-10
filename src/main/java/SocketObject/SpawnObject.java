@@ -6,10 +6,31 @@ import Game.Warrior;
  * Created by Yan on 28.11.2017.
  */
 public class SpawnObject {
-    int type;
-    int x;
-    int y;
+    int line;
+    Warrior warrior;
 
+    public SpawnObject(int line, Warrior warrior) {
+        this.line = line;
+        this.warrior = warrior;
+    }
 
+    public SpawnObject() {
+    }
 
+    public int getLine() {
+
+        return line;
+    }
+
+    public void setLine(int line) {
+        this.line = line;
+    }
+
+    public Warrior getWarrior() {
+        return warrior;
+    }
+
+    public void setWarrior(Warrior warrior) {
+        this.warrior = warrior;
+    }
 }

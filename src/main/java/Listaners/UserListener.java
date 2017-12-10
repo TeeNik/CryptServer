@@ -20,7 +20,7 @@ public class UserListener {
             public void onData(SocketIOClient client, AccountObject data, AckRequest ackSender) throws Exception {
                 if(client != null && client.isChannelOpen()){
                     System.out.println("Auth: " + data.getName());
-                    User user = new User(data.getId(), new Player(), data.getName());
+                    User user = new User(data.getId(), new Player(), data.getName(), client);
                     user.client = client;
                     UserService.getInstance().auth(user, client.getSessionId());
                     CallbackObject co = new CallbackObject();

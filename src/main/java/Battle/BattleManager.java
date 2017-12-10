@@ -26,7 +26,6 @@ public class BattleManager {
     public void Init(){
         battleList = new ArrayList<>();
         timer = new Timer();
-
     }
 
     public synchronized int GetNextBattleID(){

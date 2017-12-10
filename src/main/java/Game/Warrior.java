@@ -67,7 +67,7 @@ public class Warrior {
         this.x = x;
     }
 
-    public void moveX(float a){
+    public void MoveX(float a){
         if(lookingLeft) {
             this.x -= a;
         } else {

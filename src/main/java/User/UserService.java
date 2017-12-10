@@ -7,7 +7,7 @@ import java.util.*;
 
 public class UserService {
     public static volatile UserService instance;
-    volatile List<User> users = new ArrayList();
+    private volatile List<User> users = new ArrayList();
 
     public Timer serviceTask;
 
@@ -37,6 +37,10 @@ public class UserService {
         return instance;
     }
 
+    public synchronized List<User> getUsersList(){
+        return users;
+    }
+
     public synchronized void auth(User user, UUID id){
         if(findUserBySessionId(id) == null){
             user.setCurrentSessionId(id);
@@ -45,7 +49,7 @@ public class UserService {
         }
     }
 
-    public synchronized void refuse(UUID id){
+    public synchronized void Refuse(UUID id){
         Iterator it = users.iterator();
         while(it.hasNext()){
             User user = (User)it.next();

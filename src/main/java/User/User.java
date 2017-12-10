@@ -29,11 +29,12 @@ public class User {
 
     }
 
-    public User(int id, Player player, String name) {
+    public User(int id, Player player, String name, SocketIOClient c) {
         this.id = id;
         this.player = player;
         this.name = name;
         inSearchBattle = false;
+        client = c;
     }
 
     public int getId() {
