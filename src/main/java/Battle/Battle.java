@@ -7,11 +7,13 @@ import com.corundumstudio.socketio.SocketIOClient;
 
 import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.Timer;
+import java.util.TimerTask;
 
 import static java.lang.Thread.sleep;
 
 public class Battle implements Runnable{
-    public SocketIOClient client;
+    public int battleID;
 
     private User user_1;
     private User user_2;
@@ -19,13 +21,27 @@ public class Battle implements Runnable{
     private ArrayList<ArrayList<Warrior>> battleground = new ArrayList<ArrayList<Warrior>>(5);
 
     private int num = 0;
+    Timer timer;
 
     public Battle(){
-        client = null;
+
     }
 
-    public Battle(SocketIOClient s){
-        client = s;
+    public Battle(int b){
+        battleID = b;
+    }
+
+    public void Init(){
+        timer = new Timer();
+        timer.schedule(new TimerTask() {
+            @Override
+            public void run() {
+                for(Warrior w : user_1.getPlayer().getArmy()){
+                    if( w.isLookingLeft()) w.moveX(-10);
+                    else w.moveX(10);
+                }
+            }
+        }, 0, 300);
     }
 
     public void run() {
@@ -53,5 +69,9 @@ public class Battle implements Runnable{
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
+    }
+
+    public void Spawn(int line, int type){
+        battleground.get(line).add(new Warrior());
     }
 }

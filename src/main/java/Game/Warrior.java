@@ -5,6 +5,7 @@ package Game;
  */
 public class Warrior {
     int type;
+    int maxHp;
     int hp;
     int reload;
     float x;
@@ -15,13 +16,23 @@ public class Warrior {
 
     }
 
-    public Warrior(int type, int hp, int reload, float x, float y, boolean lookingLeft) {
+    public Warrior(int type, int maxHp, int hp, int reload, float x, float y, boolean lookingLeft) {
         this.type = type;
+        this.maxHp = maxHp;
         this.hp = hp;
         this.reload = reload;
         this.x = x;
         this.y = y;
         this.lookingLeft = lookingLeft;
+    }
+
+
+    public int getMaxHp() {
+        return maxHp;
+    }
+
+    public void setMaxHp(int maxHp) {
+        this.maxHp = maxHp;
     }
 
     public int getType() {
