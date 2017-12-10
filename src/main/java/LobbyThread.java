@@ -1,3 +1,5 @@
+import Callback.CallbackManager;
+import SocketObject.CallbackObject;
 import User.*;
 import Battle.*;
 
@@ -24,8 +26,14 @@ public class LobbyThread {
                 Iterator list = UserService.getInstance().getUsersList().iterator();
                 while (list.hasNext()){
                     User user_1 = (User)list.next();
-                    Battle battle = new Battle();
-                    battle.
+                    Battle battle = new Battle(user_1, null);
+                    battle.setStatus(1);
+
+                    user_1.setInSearchBattle(false);
+                    user_1.setBattleID(battle.battleID);
+
+                    CallbackObject co = new CallbackObject(user_1.getId(), true);
+                    CallbackManager.getInstance().AddMsg(user_1.client, "startBattle", co);
                 }
             }
         }

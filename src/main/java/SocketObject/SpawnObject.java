@@ -6,6 +6,7 @@ import Game.Warrior;
  * Created by Yan on 28.11.2017.
  */
 public class SpawnObject {
+    int userId;
     int line;
     Warrior warrior;
 
@@ -15,6 +16,14 @@ public class SpawnObject {
     }
 
     public SpawnObject() {
+    }
+
+    public int getUserId() {
+        return userId;
+    }
+
+    public void setUserId(int userId) {
+        this.userId = userId;
     }
 
     public int getLine() {

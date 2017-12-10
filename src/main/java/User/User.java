@@ -14,6 +14,7 @@ public class User {
     private Player player;
     private boolean inSearchBattle;
     private String name;
+    private int battleID;
 
     public String getName() {
         return name;
@@ -35,6 +36,22 @@ public class User {
         this.name = name;
         inSearchBattle = false;
         client = c;
+    }
+
+    public int getBattleID() {
+        return battleID;
+    }
+
+    public void setBattleID(int battleID) {
+        this.battleID = battleID;
+    }
+
+    public SocketIOClient getClient() {
+        return client;
+    }
+
+    public void setClient(SocketIOClient client) {
+        this.client = client;
     }
 
     public int getId() {

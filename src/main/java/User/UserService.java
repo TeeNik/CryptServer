@@ -61,9 +61,22 @@ public class UserService {
 
     public synchronized User findUserBySessionId(UUID id) {
         Iterator it = users.iterator();
+        User user;
         while (it.hasNext()) {
-            User user = (User)it.next();
+            user = (User)it.next();
             if (user != null && user.getCurrentSessionId().equals(id)) {
+                return  user;
+            }
+        }
+        return null;
+    }
+
+    public synchronized User findUserById(int id){
+        Iterator it = users.iterator();
+        User user;
+        while (it.hasNext()) {
+            user = (User)it.next();
+            if (user != null && user.getId() == id) {
                 return  user;
             }
         }

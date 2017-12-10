@@ -7,6 +7,14 @@ public class CallbackObject {
     int id;
     boolean ok;
 
+    public CallbackObject() {
+    }
+
+    public CallbackObject(int id, boolean ok) {
+        this.id = id;
+        this.ok = ok;
+    }
+
     public int getId() {
         return id;
     }
