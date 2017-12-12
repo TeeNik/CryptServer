@@ -16,7 +16,7 @@ public class LobbyThread {
 
     public void Init(){
         timer = new Timer();
-
+        timer.schedule(new ServiceTask(), 0 , 1000);
     }
 
     public class ServiceTask extends TimerTask {

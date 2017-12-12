@@ -28,6 +28,8 @@ public class MainLauncher {
         UserListener.Init(server);
         BattleListener.Init(server);
         CallbackManager.getInstance().Init();
+        LobbyThread lobbyThread = new LobbyThread();
+        lobbyThread.Init();
 
         server.addConnectListener(new ConnectListener() {
             public void onConnect(SocketIOClient client) {
