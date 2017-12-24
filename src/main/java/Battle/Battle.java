@@ -1,7 +1,6 @@
 package Battle;
 
 import Game.Warrior;
-import SocketObject.SpawnObject;
 import User.*;
 
 import java.util.*;
@@ -44,10 +43,10 @@ public class Battle{
     }
 
     public Warrior spawn(Warrior w){
-        battleground.get(w.line).add(w);
-        w.maxHp = 100;
-        w.hp = 100;
-        w.id = Warrior.idGenerator.incrementAndGet();
+        battleground.get(w.Line).add(w);
+        w.MaxHp = 100;
+        w.Hp = 100;
+        w.Id = Warrior.idGenerator.incrementAndGet();
 
         return w;
     }

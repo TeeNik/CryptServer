@@ -34,7 +34,7 @@ public class User {
         this.id = id;
         this.player = player;
         this.name = name;
-        inSearchBattle = false;
+        inSearchBattle = true;
         client = c;
     }
 

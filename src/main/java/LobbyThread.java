@@ -26,16 +26,18 @@ public class LobbyThread {
                 Iterator list = UserService.getInstance().getUsersList().iterator();
                 while (list.hasNext()){
                     User user_1 = (User)list.next();
-                    Battle battle = new Battle(user_1, null);
-                    battle.setStatus(1);
+                    if(user_1.isInSearchBattle()) {
+                        Battle battle = new Battle(user_1, null);
+                        battle.setStatus(1);
 
-                    user_1.setInSearchBattle(false);
-                    user_1.setBattleID(battle.battleID);
+                        user_1.setInSearchBattle(false);
+                        user_1.setBattleID(battle.battleID);
 
-                    BattleManager.getInstance().AddBattle(battle);
+                        BattleManager.getInstance().AddBattle(battle);
 
-                    CallbackObject co = new CallbackObject(user_1.getId(), true);
-                    CallbackManager.getInstance().AddMsg(user_1.client, "startBattle", co);
+                        CallbackObject co = new CallbackObject(user_1.getId(), true);
+                        CallbackManager.getInstance().AddMsg(user_1.client, "startBattle", co);
+                    }
                 }
             }
         }

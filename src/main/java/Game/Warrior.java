@@ -1,6 +1,5 @@
 package Game;
 
-import java.util.UUID;
 import java.util.concurrent.atomic.AtomicInteger;
 
 /**
@@ -19,39 +18,39 @@ public class Warrior {
         Wizard
     }
 
-    public int playerID;
-    public int id;
-    public int line;
-    public int type;
-    public int maxHp;
-    public int hp;
-    public int reload;
-    public float x;
-    public float y;
-    public boolean facingRight;
+    public int PlayerId;
+    public int Id;
+    public int Line;
+    public int Type;
+    public int MaxHp;
+    public int Hp;
+    public int Reload;
+    public float X;
+    public float Y;
+    public boolean FacingRight;
 
     public Warrior(){
 
     }
 
     public Warrior(int playerID, int id, int line, int type, int maxHp, int hp, int reload, float x, float y, boolean facingRight) {
-        this.playerID = playerID;
-        this.id = id;
-        this.line = line;
-        this.type = type;
-        this.maxHp = maxHp;
-        this.hp = hp;
-        this.reload = reload;
-        this.x = x;
-        this.y = y;
-        this.facingRight = facingRight;
+        this.PlayerId = playerID;
+        this.Id = id;
+        this.Line = line;
+        this.Type = type;
+        this.MaxHp = maxHp;
+        this.Hp = hp;
+        this.Reload = reload;
+        this.X = x;
+        this.Y = y;
+        this.FacingRight = facingRight;
     }
 
     public void MoveX(float a){
-        if(facingRight) {
-            this.x -= a;
+        if(FacingRight) {
+            this.X -= a;
         } else {
-            this.x += a;
+            this.X += a;
         }
     }
 }
