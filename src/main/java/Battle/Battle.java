@@ -41,8 +41,8 @@ public class Battle{
         }, 0, 300);
     }
 
-    public void spawn(SpawnObject s){
-        battleground.get(s.getLine()).add(s.getWarrior());
+    public void spawn(Warrior w){
+        battleground.get(w.getLine()).add(w);
     }
 
     public int getStatus() {

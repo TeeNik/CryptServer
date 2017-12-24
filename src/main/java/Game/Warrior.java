@@ -1,38 +1,54 @@
 package Game;
 
+import java.util.UUID;
+
 /**
  * Created by teenik on 23.11.2017.
  */
 public class Warrior {
+
+    public enum CharacterType {
+        Goblin,
+        Ranger,
+        Cleric,
+        Skeleton,
+        Golem,
+        Wizard
+    }
+
+    UUID playerID;
+    UUID id;
+    int line;
     int type;
     int maxHp;
     int hp;
     int reload;
     float x;
     float y;
-    boolean lookingLeft;
+    boolean facingRight;
 
-    public Warrior(){
-
+    public UUID getPlayerID() {
+        return playerID;
     }
 
-    public Warrior(int type, int maxHp, int hp, int reload, float x, float y, boolean lookingLeft) {
-        this.type = type;
-        this.maxHp = maxHp;
-        this.hp = hp;
-        this.reload = reload;
-        this.x = x;
-        this.y = y;
-        this.lookingLeft = lookingLeft;
+    public void setPlayerID(UUID playerID) {
+        this.playerID = playerID;
     }
 
-
-    public int getMaxHp() {
-        return maxHp;
+    public UUID getId() {
+        return id;
     }
 
-    public void setMaxHp(int maxHp) {
-        this.maxHp = maxHp;
+    public void setId(UUID id) {
+        this.id = id;
+    }
+
+    public int getLine() {
+        return line;
+    }
+
+    public void setLine(int line) {
+        this.line = line;
     }
 
     public int getType() {
@@ -41,6 +57,14 @@ public class Warrior {
 
     public void setType(int type) {
         this.type = type;
+    }
+
+    public int getMaxHp() {
+        return maxHp;
+    }
+
+    public void setMaxHp(int maxHp) {
+        this.maxHp = maxHp;
     }
 
     public int getHp() {
@@ -67,14 +91,6 @@ public class Warrior {
         this.x = x;
     }
 
-    public void MoveX(float a){
-        if(lookingLeft) {
-            this.x -= a;
-        } else {
-            this.x += a;
-        }
-    }
-
     public float getY() {
         return y;
     }
@@ -83,11 +99,36 @@ public class Warrior {
         this.y = y;
     }
 
-    public boolean isLookingLeft() {
-        return lookingLeft;
+    public boolean isFacingRight() {
+        return facingRight;
     }
 
-    public void setLookingLeft(boolean lookingLeft) {
-        this.lookingLeft = lookingLeft;
+    public void setFacingRight(boolean facingRight) {
+        this.facingRight = facingRight;
+    }
+
+    public Warrior(){
+
+    }
+
+    public Warrior(UUID playerID, UUID id, int line, int type, int maxHp, int hp, int reload, float x, float y, boolean facingRight) {
+        this.playerID = playerID;
+        this.id = id;
+        this.line = line;
+        this.type = type;
+        this.maxHp = maxHp;
+        this.hp = hp;
+        this.reload = reload;
+        this.x = x;
+        this.y = y;
+        this.facingRight = facingRight;
+    }
+
+    public void MoveX(float a){
+        if(facingRight) {
+            this.x -= a;
+        } else {
+            this.x += a;
+        }
     }
 }

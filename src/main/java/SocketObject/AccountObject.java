@@ -1,11 +1,13 @@
 package SocketObject;
 
+import java.util.UUID;
+
 /**
  * Created by teenik on 02.12.2017.
  */
 public class AccountObject {
     String name;
-    int id;
+    UUID id;
 
     public String getName() {
         return name;
@@ -15,11 +17,11 @@ public class AccountObject {
         this.name = name;
     }
 
-    public int getId() {
+    public UUID getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(UUID id) {
         this.id = id;
     }
 }

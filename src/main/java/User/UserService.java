@@ -22,7 +22,6 @@ public class UserService {
                     co.setId(u.getId());
 
                     CallbackManager.getInstance().AddMsg(u.client, "connect",co);
-                    System.out.println("send connect to " + u.getName() + " " + u.getId());
                 }
             }
         }, 0, 1000);
@@ -71,7 +70,7 @@ public class UserService {
         return null;
     }
 
-    public synchronized User findUserById(int id){
+    public synchronized User findUserById(UUID id){
         Iterator it = users.iterator();
         User user;
         while (it.hasNext()) {
