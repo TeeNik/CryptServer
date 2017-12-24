@@ -1,11 +1,14 @@
 package Game;
 
 import java.util.UUID;
+import java.util.concurrent.atomic.AtomicInteger;
 
 /**
  * Created by teenik on 23.11.2017.
  */
 public class Warrior {
+
+    public static final AtomicInteger idGenerator = new AtomicInteger(0);
 
     public enum CharacterType {
         Goblin,
@@ -16,102 +19,22 @@ public class Warrior {
         Wizard
     }
 
-    UUID playerID;
-    UUID id;
-    int line;
-    int type;
-    int maxHp;
-    int hp;
-    int reload;
-    float x;
-    float y;
-    boolean facingRight;
-
-    public UUID getPlayerID() {
-        return playerID;
-    }
-
-    public void setPlayerID(UUID playerID) {
-        this.playerID = playerID;
-    }
-
-    public UUID getId() {
-        return id;
-    }
-
-    public void setId(UUID id) {
-        this.id = id;
-    }
-
-    public int getLine() {
-        return line;
-    }
-
-    public void setLine(int line) {
-        this.line = line;
-    }
-
-    public int getType() {
-        return type;
-    }
-
-    public void setType(int type) {
-        this.type = type;
-    }
-
-    public int getMaxHp() {
-        return maxHp;
-    }
-
-    public void setMaxHp(int maxHp) {
-        this.maxHp = maxHp;
-    }
-
-    public int getHp() {
-        return hp;
-    }
-
-    public void setHp(int hp) {
-        this.hp = hp;
-    }
-
-    public int getReload() {
-        return reload;
-    }
-
-    public void setReload(int reload) {
-        this.reload = reload;
-    }
-
-    public float getX() {
-        return x;
-    }
-
-    public void setX(float x) {
-        this.x = x;
-    }
-
-    public float getY() {
-        return y;
-    }
-
-    public void setY(float y) {
-        this.y = y;
-    }
-
-    public boolean isFacingRight() {
-        return facingRight;
-    }
-
-    public void setFacingRight(boolean facingRight) {
-        this.facingRight = facingRight;
-    }
+    public int playerID;
+    public int id;
+    public int line;
+    public int type;
+    public int maxHp;
+    public int hp;
+    public int reload;
+    public float x;
+    public float y;
+    public boolean facingRight;
 
     public Warrior(){
 
     }
 
-    public Warrior(UUID playerID, UUID id, int line, int type, int maxHp, int hp, int reload, float x, float y, boolean facingRight) {
+    public Warrior(int playerID, int id, int line, int type, int maxHp, int hp, int reload, float x, float y, boolean facingRight) {
         this.playerID = playerID;
         this.id = id;
         this.line = line;

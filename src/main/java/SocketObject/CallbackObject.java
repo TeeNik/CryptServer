@@ -1,27 +1,25 @@
 package SocketObject;
 
-import java.util.UUID;
-
 /**
  * Created by teenik on 02.12.2017.
  */
 public class CallbackObject {
-    UUID id;
+    int id;
     boolean ok;
 
     public CallbackObject() {
     }
 
-    public CallbackObject(UUID id, boolean ok) {
+    public CallbackObject(int id, boolean ok) {
         this.id = id;
         this.ok = ok;
     }
 
-    public UUID getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(UUID id) {
+    public void setId(int id) {
         this.id = id;
     }
 

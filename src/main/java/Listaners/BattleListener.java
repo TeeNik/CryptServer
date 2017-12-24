@@ -1,6 +1,9 @@
 package Listaners;
 
+import Battle.Battle;
 import Battle.BattleManager;
+import Callback.CallbackManager;
+import Game.Hoe;
 import Game.Warrior;
 import SocketObject.SpawnObject;
 import User.UserService;
@@ -19,8 +22,12 @@ public class BattleListener {
         s.addEventListener("spawnWarrior", Warrior.class, new DataListener<Warrior>() {
                     @Override
                     public void onData(SocketIOClient client, Warrior data, AckRequest ackSender) throws Exception {
-                        int battleID = UserService.getInstance().findUserById(data.getPlayerID()).getBattleID();
-                        BattleManager.getInstance().GetBattle(battleID).spawn(data);
+                        int battleID = UserService.getInstance().findUserById(data.playerID).getBattleID();
+                        Battle battle = BattleManager.getInstance().GetBattle(battleID);
+                        Warrior w = battle.spawn(data);
+                        System.out.println("Spawn: " + w);
+                        CallbackManager.getInstance().AddMsg(battle.user_1.client, "spawnWarrior", w);
+                        CallbackManager.getInstance().AddMsg(battle.user_2.client, "spawnWarrior", w);
                     }
                 }
         );

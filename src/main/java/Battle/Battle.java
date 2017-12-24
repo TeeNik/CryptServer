@@ -4,16 +4,16 @@ import Game.Warrior;
 import SocketObject.SpawnObject;
 import User.*;
 
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.Timer;
-import java.util.TimerTask;
+import java.util.*;
 
 public class Battle{
+
+    private final int numOfLines = 5;
+
     public int battleID;
-    private User user_1;
-    private User user_2;
-    private ArrayList<ArrayList<Warrior>> battleground = new ArrayList<ArrayList<Warrior>>(5);
+    public User user_1;
+    public User user_2;
+    private ArrayList<ArrayList<Warrior>> battleground = new ArrayList<ArrayList<Warrior>>();
     private int num = 0;
     private int status;
 
@@ -23,9 +23,11 @@ public class Battle{
         this.user_1 = user_1;
         this.user_2 = user_2;
         battleID = BattleManager.getInstance().GetNextBattleID();
-    }
 
-    public void Init(){
+        for(int i = 0; i < numOfLines; i++ ){
+            battleground.add(new ArrayList<Warrior>());
+        }
+
         timer = new Timer();
         timer.schedule(new TimerTask() {
             @Override
@@ -41,8 +43,13 @@ public class Battle{
         }, 0, 300);
     }
 
-    public void spawn(Warrior w){
-        battleground.get(w.getLine()).add(w);
+    public Warrior spawn(Warrior w){
+        battleground.get(w.line).add(w);
+        w.maxHp = 100;
+        w.hp = 100;
+        w.id = Warrior.idGenerator.incrementAndGet();
+
+        return w;
     }
 
     public int getStatus() {

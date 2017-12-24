@@ -32,6 +32,8 @@ public class LobbyThread {
                     user_1.setInSearchBattle(false);
                     user_1.setBattleID(battle.battleID);
 
+                    BattleManager.getInstance().AddBattle(battle);
+
                     CallbackObject co = new CallbackObject(user_1.getId(), true);
                     CallbackManager.getInstance().AddMsg(user_1.client, "startBattle", co);
                 }

@@ -48,7 +48,7 @@ public class UserService {
         }
     }
 
-    public synchronized void Refuse(UUID id){
+    public synchronized void Refuse(int id){
         Iterator it = users.iterator();
         while(it.hasNext()){
             User user = (User)it.next();
@@ -70,7 +70,7 @@ public class UserService {
         return null;
     }
 
-    public synchronized User findUserById(UUID id){
+    public synchronized User findUserById(int id){
         Iterator it = users.iterator();
         User user;
         while (it.hasNext()) {
