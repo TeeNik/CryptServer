@@ -35,4 +35,8 @@ public class BattleManager {
     public synchronized Battle GetBattle(int id){
         return battleList.get(id);
     }
+
+    public synchronized void EndBattle(int id){
+        battleList.remove(id);
+    }
 }

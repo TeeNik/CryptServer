@@ -2,6 +2,7 @@ package User;
 
 import Callback.CallbackManager;
 import SocketObject.CallbackObject;
+import com.corundumstudio.socketio.SocketIOClient;
 
 import java.util.*;
 
@@ -76,6 +77,18 @@ public class UserService {
         while (it.hasNext()) {
             user = (User)it.next();
             if (user != null && user.getId() == id) {
+                return  user;
+            }
+        }
+        return null;
+    }
+
+    public synchronized User findUserByClient(SocketIOClient client){
+        Iterator it = users.iterator();
+        User user;
+        while (it.hasNext()) {
+            user = (User)it.next();
+            if (user != null && user.client == client) {
                 return  user;
             }
         }

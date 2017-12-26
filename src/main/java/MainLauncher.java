@@ -1,6 +1,8 @@
+import Battle.BattleManager;
 import Callback.CallbackManager;
 import Listaners.BattleListener;
 import Listaners.UserListener;
+import User.*;
 import com.corundumstudio.socketio.Configuration;
 import com.corundumstudio.socketio.SocketIOClient;
 import com.corundumstudio.socketio.SocketIOServer;
@@ -40,6 +42,10 @@ public class MainLauncher {
         server.addDisconnectListener(new DisconnectListener() {
             public void onDisconnect(SocketIOClient client) {
                 System.out.println("Disconnect: " + client);
+                User user = UserService.getInstance().findUserByClient(client);
+                if(user != null && user.getBattleID() != -1){
+                    BattleManager.getInstance().EndBattle(UserService.getInstance().findUserByClient(client).getBattleID());
+                }
             }
         });
 
