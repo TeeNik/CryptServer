@@ -14,7 +14,7 @@ public class User {
     private Player player;
     private boolean inSearchBattle;
     private String name;
-    private int battleID;
+    private int battleID = -1;
 
     public String getName() {
         return name;

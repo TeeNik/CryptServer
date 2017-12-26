@@ -1,9 +1,13 @@
 package Battle;
 
+import Callback.CallbackManager;
 import Game.Warrior;
 import User.*;
 
 import java.util.*;
+
+import static System.GameInfo.END_POS;
+import static System.GameInfo.START_POS;
 
 public class Battle{
 
@@ -18,7 +22,7 @@ public class Battle{
 
     Timer timer;
 
-    public Battle(User user_1, User user_2) {
+    public Battle(final User user_1, User user_2) {
         this.user_1 = user_1;
         this.user_2 = user_2;
         battleID = BattleManager.getInstance().GetNextBattleID();
@@ -36,10 +40,12 @@ public class Battle{
                     while(it.hasNext()){
                         Warrior w = (Warrior)it.next();
                         w.MoveX(1);
+                        System.out.println(w.Type + ":  " + w.X);
+                        CallbackManager.getInstance().AddMsg(user_1.client, "move", w);
                     }
                 }
             }
-        }, 0, 300);
+        }, 0, 500);
     }
 
     public Warrior spawn(Warrior w){
@@ -47,7 +53,7 @@ public class Battle{
         w.MaxHp = 100;
         w.Hp = 100;
         w.Id = Warrior.idGenerator.incrementAndGet();
-
+        w.X = w.FacingRight ? START_POS : END_POS;
         return w;
     }
 

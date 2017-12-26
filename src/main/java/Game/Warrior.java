@@ -1,6 +1,11 @@
 package Game;
 
+import System.GameInfo.CharacterType;
+
 import java.util.concurrent.atomic.AtomicInteger;
+
+import static System.GameInfo.END_POS;
+import static System.GameInfo.START_POS;
 
 /**
  * Created by teenik on 23.11.2017.
@@ -9,19 +14,12 @@ public class Warrior {
 
     public static final AtomicInteger idGenerator = new AtomicInteger(0);
 
-    public enum CharacterType {
-        Goblin,
-        Ranger,
-        Cleric,
-        Skeleton,
-        Golem,
-        Wizard
-    }
+
 
     public int PlayerId;
     public int Id;
     public int Line;
-    public int Type;
+    public CharacterType Type;
     public int MaxHp;
     public int Hp;
     public int Reload;
@@ -33,7 +31,7 @@ public class Warrior {
 
     }
 
-    public Warrior(int playerID, int id, int line, int type, int maxHp, int hp, int reload, float x, float y, boolean facingRight) {
+    public Warrior(int playerID, int id, int line, CharacterType type, int maxHp, int hp, int reload, float x, float y, boolean facingRight) {
         this.PlayerId = playerID;
         this.Id = id;
         this.Line = line;
@@ -47,10 +45,14 @@ public class Warrior {
     }
 
     public void MoveX(float a){
-        if(FacingRight) {
-            this.X -= a;
-        } else {
+
+        if(FacingRight && this.X < END_POS)
+        {
             this.X += a;
+        }
+        else if (!FacingRight && this.X > START_POS)
+        {
+            this.X -= a;
         }
     }
 }

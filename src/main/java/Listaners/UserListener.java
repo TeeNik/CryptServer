@@ -15,7 +15,7 @@ import User.*;
 public class UserListener {
 
     public static void Init(SocketIOServer server){
-        server.addEventListener("auth", AccountObject.class, new DataListener<AccountObject>() {
+        server.addEventListener("Auth", AccountObject.class, new DataListener<AccountObject>() {
             @Override
             public void onData(SocketIOClient client, AccountObject data, AckRequest ackSender) throws Exception {
                 if(client != null && client.isChannelOpen()){
