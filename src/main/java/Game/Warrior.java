@@ -12,8 +12,12 @@ import static System.GameInfo.START_POS;
  */
 public class Warrior {
 
-    public static final AtomicInteger idGenerator = new AtomicInteger(0);
+    public enum Status{
+        Walk,
+        Stay
+    }
 
+    public static final AtomicInteger idGenerator = new AtomicInteger(0);
 
 
     public int PlayerId;
@@ -26,6 +30,8 @@ public class Warrior {
     public float X;
     public float Y;
     public boolean FacingRight;
+
+    public Status Status;
 
     public Warrior(){
 
