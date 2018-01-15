@@ -23,6 +23,7 @@ public class Battle{
 
     Timer timer;
 
+
     public Battle(final User user_1, User user_2) {
         this.user_1 = user_1;
         this.user_2 = user_2;
