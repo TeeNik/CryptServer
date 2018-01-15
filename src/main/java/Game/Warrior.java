@@ -45,7 +45,6 @@ public class Warrior {
     }
 
     public void MoveX(float a){
-
         if(FacingRight && this.X < END_POS)
         {
             this.X += a;

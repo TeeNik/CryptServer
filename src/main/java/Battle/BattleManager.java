@@ -37,6 +37,8 @@ public class BattleManager {
     }
 
     public synchronized void EndBattle(int id){
+        System.out.println("end battle");
+        battleList.get(id).End();
         battleList.remove(id);
     }
 }

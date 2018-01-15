@@ -16,7 +16,8 @@ public class Battle{
     public int battleID;
     public User user_1;
     public User user_2;
-    private ArrayList<ArrayList<Warrior>> battleground = new ArrayList<ArrayList<Warrior>>();
+    private ArrayList<TreeMap<Integer, Warrior>> army_1 = new ArrayList<TreeMap<Integer, Warrior>>();
+    private ArrayList<TreeMap<Integer, Warrior>> army_2 = new ArrayList<TreeMap<Integer, Warrior>>();
     private int num = 0;
     private int status;
 
@@ -28,7 +29,8 @@ public class Battle{
         battleID = BattleManager.getInstance().GetNextBattleID();
 
         for(int i = 0; i < numOfLines; i++ ){
-            battleground.add(new ArrayList<Warrior>());
+            army_1.add(new TreeMap<Integer, Warrior>());
+            army_2.add(new TreeMap<Integer, Warrior>());
         }
 
         timer = new Timer();
@@ -36,12 +38,12 @@ public class Battle{
             @Override
             public void run() {
                 for(int i = 0; i < 5; i++){
-                    Iterator it = battleground.get(i).iterator();
-                    while(it.hasNext()){
-                        Warrior w = (Warrior)it.next();
-                        w.MoveX(1);
-                        System.out.println(w.Type + ":  " + w.X);
-                        CallbackManager.getInstance().AddMsg(user_1.client, "move", w);
+                    for(Map.Entry<Integer, Warrior> w : army_1.get(i).entrySet()){
+                        Warrior warrior = w.getValue();
+                        warrior.MoveX(1);
+                        System.out.println(warrior.Type + ":  " + warrior.X);
+                        CallbackManager.getInstance().AddMsg(user_1.client, "move", warrior);
+                        w.getValue().MoveX(1);
                     }
                 }
             }
@@ -49,12 +51,16 @@ public class Battle{
     }
 
     public Warrior spawn(Warrior w){
-        battleground.get(w.Line).add(w);
+        army_1.get(w.Line).put(w);
         w.MaxHp = 100;
         w.Hp = 100;
         w.Id = Warrior.idGenerator.incrementAndGet();
         w.X = w.FacingRight ? START_POS : END_POS;
         return w;
+    }
+
+    public void End(){
+        timer.cancel();
     }
 
     public int getStatus() {
