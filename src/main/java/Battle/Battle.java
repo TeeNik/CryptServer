@@ -16,8 +16,7 @@ public class Battle{
     public int battleID;
     public User user_1;
     public User user_2;
-    private ArrayList<TreeMap<Integer, Warrior>> army_1 = new ArrayList<TreeMap<Integer, Warrior>>();
-    private ArrayList<TreeMap<Integer, Warrior>> army_2 = new ArrayList<TreeMap<Integer, Warrior>>();
+    private ArrayList<Line> battleground = new ArrayList<>();
     private int num = 0;
     private int status;
 
@@ -30,33 +29,33 @@ public class Battle{
         battleID = BattleManager.getInstance().GetNextBattleID();
 
         for(int i = 0; i < numOfLines; i++ ){
-            army_1.add(new TreeMap<Integer, Warrior>());
-            army_2.add(new TreeMap<Integer, Warrior>());
+            battleground.add(new Line());
         }
 
         timer = new Timer();
         timer.schedule(new TimerTask() {
             @Override
             public void run() {
-                for(int i = 0; i < 5; i++){
-                    for(Map.Entry<Integer, Warrior> w : army_1.get(i).entrySet()){
+                for(Line line : battleground){
+                    line.Move();
+                    /*for(Map.Entry<Integer, Warrior> w : army_left.get(i).entrySet()){
                         Warrior warrior = w.getValue();
                         warrior.MoveX(1);
                         System.out.println(warrior.Type + ":  " + warrior.X);
                         CallbackManager.getInstance().AddMsg(user_1.client, "move", warrior);
                         w.getValue().MoveX(1);
-                    }
+                    }*/
                 }
             }
         }, 0, 500);
     }
 
     public Warrior spawn(Warrior w){
-        army_1.get(w.Line).put(w);
         w.MaxHp = 100;
         w.Hp = 100;
         w.Id = Warrior.idGenerator.incrementAndGet();
         w.X = w.FacingRight ? START_POS : END_POS;
+        battleground.get(w.Line).Add(w);
         return w;
     }
 
