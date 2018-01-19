@@ -11,6 +11,11 @@ import static System.GameInfo.START_POS;
 
 public class Battle{
 
+    public enum BattleStatus{
+        Started,
+        Finished
+    }
+
     private final int numOfLines = 5;
 
     public int battleID;
@@ -18,7 +23,7 @@ public class Battle{
     public User user_2;
     private ArrayList<Line> battleground = new ArrayList<>();
     private int num = 0;
-    private int status;
+    private BattleStatus status;
 
     Timer timer;
 
@@ -63,11 +68,11 @@ public class Battle{
         timer.cancel();
     }
 
-    public int getStatus() {
+    public BattleStatus getStatus() {
         return status;
     }
 
-    public void setStatus(int status) {
+    public void setStatus(BattleStatus status) {
         this.status = status;
     }
 }

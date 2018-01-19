@@ -22,13 +22,16 @@ public class Line {
                     }
                 }
             } else {
-                w.MoveX(1);
                 if(army_left.get(i-1).Status == Status.Stay){
                     w.Status = Status.Stay;
+                } else {
+                    w.Status = Status.Walk;
+                    w.MoveX(1);
                 }
             }
 
         }
+        DrawLine();
     }
 
     public void Add(Warrior w){
@@ -37,6 +40,19 @@ public class Line {
         } else {
             army_right.add(w);
         }
+    }
+
+    private void DrawLine(){
+        StringBuilder stringBuilder = new StringBuilder();
+        for(int i = 0; i < 25; i++)
+            stringBuilder.append("_");
+        for(Warrior w : army_left){
+            stringBuilder.setCharAt((int)w.X+12, 'X');
+        }
+        for(Warrior w : army_right){
+            stringBuilder.setCharAt((int)w.X+12, 'X');
+        }
+        System.out.println(stringBuilder.toString());
     }
 
 }
