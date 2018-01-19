@@ -1,4 +1,5 @@
 import Callback.CallbackManager;
+import Game.Player;
 import SocketObject.CallbackObject;
 import SocketObject.StartBattleObject;
 import User.*;
@@ -34,18 +35,13 @@ public class LobbyThread {
                                 Battle battle = new Battle(user_1, null);
                                 battle.setStatus(Battle.BattleStatus.Started);
 
-                                user_1.setInSearchBattle(false);
-                                user_1.setBattleID(battle.battleID);
-
-                                user_2.setInSearchBattle(false);
-                                user_2.setBattleID(battle.battleID);
-
+                                InitUserForBattle(user_1, battle, true);
+                                InitUserForBattle(user_2, battle, false);
+                                
                                 BattleManager.getInstance().AddBattle(battle);
 
                                 StartBattleObject co = new StartBattleObject();
-                                co.facingRight = true;
                                 CallbackManager.getInstance().AddMsg(user_1.client, "startBattle", co);
-                                co.facingRight = false;
                                 CallbackManager.getInstance().AddMsg(user_2.client, "startBattle", co);
                             }
                         }
@@ -53,6 +49,14 @@ public class LobbyThread {
                 }
             }
         }
+    }
+
+    private void InitUserForBattle(User user, Battle battle, boolean fr){
+        user.setBattleID(battle.battleID);
+        user.setInSearchBattle(false);
+        Player player = new Player();
+        player.facingRight = fr;
+        user.setPlayer(player);
     }
 
 
