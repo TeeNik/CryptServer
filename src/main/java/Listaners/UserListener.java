@@ -24,8 +24,8 @@ public class UserListener {
                     user.client = client;
                     UserService.getInstance().auth(user, client.getSessionId());
                     CallbackObject co = new CallbackObject();
-                    co.setOk(true);
-                    co.setId(user.getId());
+                    co.ok =true;
+                    co.id = user.getId();
                     CallbackManager.getInstance().AddMsg(client, "auth", co);
                 }
             }

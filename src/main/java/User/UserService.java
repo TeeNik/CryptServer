@@ -18,9 +18,9 @@ public class UserService {
             @Override
             public void run() {
                 CallbackObject co = new CallbackObject();
-                co.setOk(true);
+                co.ok = true;
                 for (User u : users){
-                    co.setId(u.getId());
+                    co.id = u.getId();
 
                     CallbackManager.getInstance().AddMsg(u.client, "connect",co);
                 }

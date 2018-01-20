@@ -1,7 +1,6 @@
 import Callback.CallbackManager;
 import Game.Player;
-import SocketObject.CallbackObject;
-import SocketObject.StartBattleObject;
+import SocketObject.BattleFrameObject;
 import User.*;
 import Battle.*;
 
@@ -24,7 +23,7 @@ public class LobbyThread {
     public class ServiceTask extends TimerTask {
         @Override
         public void run() {
-            if(UserService.getInstance().getUsersList().size() >= 1){
+            if(UserService.getInstance().getUsersList().size() >= 2){
                 Iterator list = UserService.getInstance().getUsersList().iterator();
                 while (list.hasNext()){
                     User user_1 = (User)list.next();
@@ -37,11 +36,15 @@ public class LobbyThread {
 
                                 InitUserForBattle(user_1, battle, true);
                                 InitUserForBattle(user_2, battle, false);
-                                
+
                                 BattleManager.getInstance().AddBattle(battle);
 
-                                StartBattleObject co = new StartBattleObject();
+                                BattleFrameObject co = new BattleFrameObject();
+                                co.player = user_1.getPlayer();
+                                co.opponent = user_2.getPlayer();
                                 CallbackManager.getInstance().AddMsg(user_1.client, "startBattle", co);
+                                co.player = user_2.getPlayer();
+                                co.opponent = user_1.getPlayer();
                                 CallbackManager.getInstance().AddMsg(user_2.client, "startBattle", co);
                             }
                         }
@@ -55,7 +58,7 @@ public class LobbyThread {
         user.setBattleID(battle.battleID);
         user.setInSearchBattle(false);
         Player player = new Player();
-        player.facingRight = fr;
+        player.Init(fr);
         user.setPlayer(player);
     }
 
