@@ -11,27 +11,36 @@ public class Line {
     private List<Warrior> army_right = new ArrayList<>();
 
     void Move(){
-        for(int i = 0; i < army_left.size(); i++){
-            Warrior w = army_left.get(i);
-            w.MoveX(1);
 
-            if(i == 0){
-                if(army_right.size() != 0){
-                    if(w.X + 2 == army_right.get(i).X){
+        MoveLine(army_left, army_right);
+        MoveLine(army_right, army_left);
+
+        DrawLine();
+    }
+
+    private void MoveLine(List<Warrior> army_1, List<Warrior> army_2){
+        Warrior w;
+        for(int i = 0; i < army_1.size(); i++){
+            w = army_1.get(i);
+            if(i == 0) {
+                if (army_2.size() != 0) {
+                    if (w.X - army_2.get(i).X <= 2)
                         w.Status = Status.Stay;
-                    }
-                }
-            } else {
-                if(army_left.get(i-1).Status == Status.Stay){
-                    w.Status = Status.Stay;
+                    else
+                        w.Status = Status.Walk;
                 } else {
                     w.Status = Status.Walk;
-                    w.MoveX(1);
                 }
             }
+            else {
+                if(army_1.get(i-1).Status == Status.Stay)
+                    w.Status = Status.Stay;
+                else
+                    w.Status = Status.Walk;
+            }
 
+            w.MoveX(1);
         }
-        DrawLine();
     }
 
     public void Add(Warrior w){
@@ -50,7 +59,7 @@ public class Line {
             stringBuilder.setCharAt((int)w.X+12, 'X');
         }
         for(Warrior w : army_right){
-            stringBuilder.setCharAt((int)w.X+12, 'X');
+            stringBuilder.setCharAt((int)w.X+12, 'O');
         }
         System.out.println(stringBuilder.toString());
     }

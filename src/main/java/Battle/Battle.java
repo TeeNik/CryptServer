@@ -22,7 +22,6 @@ public class Battle{
     public User user_1;
     public User user_2;
     private ArrayList<Line> battleground = new ArrayList<>();
-    private int num = 0;
     private BattleStatus status;
 
     Timer timer;

@@ -51,6 +51,8 @@ public class Warrior {
     }
 
     public void MoveX(float a){
+        if(Status == Status.Stay) return;
+
         if(FacingRight && this.X < END_POS)
         {
             this.X += a;
