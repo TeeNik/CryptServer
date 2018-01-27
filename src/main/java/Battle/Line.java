@@ -15,7 +15,7 @@ public class Line {
         MoveLine(army_left, army_right);
         MoveLine(army_right, army_left);
 
-        DrawLine();
+        //DrawLine();
     }
 
     private void MoveLine(List<Warrior> army_1, List<Warrior> army_2){

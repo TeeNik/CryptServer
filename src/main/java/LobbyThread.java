@@ -46,6 +46,9 @@ public class LobbyThread {
                                 co.player = user_2.getPlayer();
                                 co.opponent = user_1.getPlayer();
                                 CallbackManager.getInstance().AddMsg(user_2.client, "startBattle", co);
+
+                                System.out.println("user_"+user_1.getId() + " fr: " + true);
+                                System.out.println("user_"+user_2.getId() + " fr: " + false);
                             }
                         }
                     }
