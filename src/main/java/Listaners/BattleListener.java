@@ -25,12 +25,10 @@ public class BattleListener {
                         Warrior w = battle.spawn(data);
                         System.out.println("Spawn: " + w.Type + "  " + w.Id);
                         CallbackManager.getInstance().AddMsg(battle.user_1.client, "spawnWarrior", w);
+                        CallbackManager.getInstance().AddMsg(battle.user_2.client, "spawnWarrior", w);
                         //CallbackManager.getInstance().AddMsg(battle.user_2.client, "spawnWarrior", w);
                     }
                 }
         );
     }
-
-
-
-}
+ }

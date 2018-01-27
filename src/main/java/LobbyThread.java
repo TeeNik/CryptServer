@@ -43,9 +43,10 @@ public class LobbyThread {
                                 co.player = user_1.getPlayer();
                                 co.opponent = user_2.getPlayer();
                                 CallbackManager.getInstance().AddMsg(user_1.client, "startBattle", co);
-                                co.player = user_2.getPlayer();
-                                co.opponent = user_1.getPlayer();
-                                CallbackManager.getInstance().AddMsg(user_2.client, "startBattle", co);
+                                BattleFrameObject fo = new BattleFrameObject();
+                                fo.player = user_2.getPlayer();
+                                fo.opponent = user_1.getPlayer();
+                                CallbackManager.getInstance().AddMsg(user_2.client, "startBattle", fo);
 
                                 System.out.println("user_"+user_1.getId() + " fr: " + true);
                                 System.out.println("user_"+user_2.getId() + " fr: " + false);

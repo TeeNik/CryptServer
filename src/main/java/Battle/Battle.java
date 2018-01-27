@@ -59,6 +59,7 @@ public class Battle{
         w.Hp = 100;
         w.Id = Warrior.idGenerator.incrementAndGet();
         w.X = w.FacingRight ? START_POS : END_POS;
+        System.out.println("spawn fr: " + w.FacingRight);
         battleground.get(w.Line).Add(w);
         return w;
     }
