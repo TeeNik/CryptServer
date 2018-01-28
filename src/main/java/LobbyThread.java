@@ -4,6 +4,7 @@ import SocketObject.BattleFrameObject;
 import User.*;
 import Battle.*;
 
+import javax.jws.soap.SOAPBinding;
 import java.util.Iterator;
 import java.util.Timer;
 import java.util.TimerTask;
@@ -31,7 +32,7 @@ public class LobbyThread {
                         while (list.hasNext()){
                             User user_2 = (User)list.next();
                             if(user_2.isInSearchBattle()){
-                                Battle battle = new Battle(user_1, null);
+                                Battle battle = new Battle(user_1, user_2);
                                 battle.setStatus(Battle.BattleStatus.Started);
 
                                 InitUserForBattle(user_1, battle, true);
@@ -39,14 +40,8 @@ public class LobbyThread {
 
                                 BattleManager.getInstance().AddBattle(battle);
 
-                                BattleFrameObject co = new BattleFrameObject();
-                                co.player = user_1.getPlayer();
-                                co.opponent = user_2.getPlayer();
-                                CallbackManager.getInstance().AddMsg(user_1.client, "startBattle", co);
-                                BattleFrameObject fo = new BattleFrameObject();
-                                fo.player = user_2.getPlayer();
-                                fo.opponent = user_1.getPlayer();
-                                CallbackManager.getInstance().AddMsg(user_2.client, "startBattle", fo);
+                                SendStartBattle(user_1, user_2);
+                                SendStartBattle(user_2, user_1);
 
                                 System.out.println("user_"+user_1.getId() + " fr: " + true);
                                 System.out.println("user_"+user_2.getId() + " fr: " + false);
@@ -56,6 +51,13 @@ public class LobbyThread {
                 }
             }
         }
+    }
+
+    private void SendStartBattle(User user_1, User user_2){
+        BattleFrameObject co = new BattleFrameObject();
+        co.player = user_1.getPlayer();
+        co.opponent = user_2.getPlayer();
+        CallbackManager.getInstance().AddMsg(user_1.client, "startBattle", co);
     }
 
     private void InitUserForBattle(User user, Battle battle, boolean fr){
