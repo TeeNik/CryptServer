@@ -1,7 +1,6 @@
 package Warrior;
 
-public class SupportState extends WarriorState{
-
+public class WalkState extends WarriorState{
     @Override
     public void Enter(Warrior w) {
         warrior = w;
@@ -9,7 +8,7 @@ public class SupportState extends WarriorState{
 
     @Override
     public void Execute() {
-
+        warrior.MoveX(1);
     }
 
     @Override

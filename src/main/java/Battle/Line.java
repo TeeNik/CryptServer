@@ -1,5 +1,8 @@
 package Battle;
 
+import Warrior.AttackState;
+import Warrior.SupportState;
+import Warrior.WalkState;
 import Warrior.Warrior;
 
 import java.util.ArrayList;
@@ -25,29 +28,25 @@ public class Line {
             if(i == 0) {
                 if (army_2.size() != 0) {
                     if (w.X - army_2.get(i).X <= 2){
-                        w.Status = Status.Stay;
+                        w.ChangeState(new AttackState());
                         w.Target = army_2.get(i);
                     }
                     else{
-                        w.Status = Status.Walk;
+                        w.ChangeState(new WalkState());
                         w.Target = null;
                     }
                 } else {
-                    w.Status = Status.Walk;
+                    w.ChangeState(new AttackState());
                 }
             }
             else {
-                if(army_1.get(i-1).Status == Status.Stay)
-                    w.Status = Status.Stay;
+                if(army_1.get(i-1).State.getClass() == AttackState.class)
+                    w.ChangeState(new SupportState());
                 else
-                    w.Status = Status.Walk;
+                    w.ChangeState(new WalkState());
             }
 
-            if(w.Target != null){
-                w.Execute();
-            }
-
-            w.MoveX(1);
+            w.State.Execute();
         }
     }
 

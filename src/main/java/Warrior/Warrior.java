@@ -11,23 +11,6 @@ import static System.GameInfo.START_POS;
  * Created by teenik on 23.11.2017.
  */
 public class Warrior {
-
-    public void Execute() {
-        switch (Status){
-            case Stay:
-                Target.TakeDamage(Damage);
-                break;
-            case Dead:
-                break;
-        }
-    }
-
-    public enum Status{
-        Walk,
-        Stay,
-        Dead
-    }
-
     public static final AtomicInteger idGenerator = new AtomicInteger(0);
 
 
@@ -43,10 +26,8 @@ public class Warrior {
     public boolean FacingRight;
     public int Damage;
 
-    public Status Status;
-
     public Warrior Target;
-    public State
+    public WarriorState State;
 
     public Warrior(){
 
@@ -65,9 +46,15 @@ public class Warrior {
         this.FacingRight = facingRight;
     }
 
-    public void MoveX(float a){
-        if(Status == Status.Stay) return;
+    public void ChangeState(WarriorState newState){
+        if(State != null){
+            State.Exit();
+        }
+        State = newState;
+        State.Enter(this);
+    }
 
+    public void MoveX(float a){
         if(FacingRight && this.X < END_POS)
         {
             this.X += a;

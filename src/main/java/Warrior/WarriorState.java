@@ -1,5 +1,10 @@
 package Warrior;
 
 public abstract class WarriorState {
-    abstract void Execute(Warrior w);
+
+    public Warrior warrior;
+
+    abstract public void Enter(Warrior w);
+    abstract public void Execute();
+    abstract public void Exit();
 }
