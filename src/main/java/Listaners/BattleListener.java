@@ -3,7 +3,7 @@ package Listaners;
 import Battle.Battle;
 import Battle.BattleManager;
 import Callback.CallbackManager;
-import Game.Warrior;
+import Warrior.Warrior;
 import User.UserService;
 import com.corundumstudio.socketio.AckRequest;
 import com.corundumstudio.socketio.SocketIOClient;

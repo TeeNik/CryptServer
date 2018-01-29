@@ -1,7 +1,6 @@
 package Battle;
 
-import Callback.CallbackManager;
-import Game.Warrior;
+import Warrior.Warrior;
 import User.*;
 
 import java.util.*;

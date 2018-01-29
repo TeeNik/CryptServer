@@ -1,5 +1,7 @@
 package Game;
 
+import Warrior.Warrior;
+
 import java.util.ArrayList;
 
 /**

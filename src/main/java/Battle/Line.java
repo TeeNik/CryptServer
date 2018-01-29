@@ -1,10 +1,10 @@
 package Battle;
 
-import Game.Warrior;
+import Warrior.Warrior;
 
 import java.util.ArrayList;
 import java.util.List;
-import Game.Warrior.*;
+import Warrior.Warrior.*;
 
 public class Line {
     private List<Warrior> army_left = new ArrayList<>();
@@ -24,10 +24,14 @@ public class Line {
             w = army_1.get(i);
             if(i == 0) {
                 if (army_2.size() != 0) {
-                    if (w.X - army_2.get(i).X <= 2)
+                    if (w.X - army_2.get(i).X <= 2){
                         w.Status = Status.Stay;
-                    else
+                        w.Target = army_2.get(i);
+                    }
+                    else{
                         w.Status = Status.Walk;
+                        w.Target = null;
+                    }
                 } else {
                     w.Status = Status.Walk;
                 }
@@ -37,6 +41,10 @@ public class Line {
                     w.Status = Status.Stay;
                 else
                     w.Status = Status.Walk;
+            }
+
+            if(w.Target != null){
+                w.Execute();
             }
 
             w.MoveX(1);

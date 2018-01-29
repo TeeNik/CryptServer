@@ -1,4 +1,5 @@
-package Game;
+package Warrior;
 
-public class WarriorState {
+public abstract class WarriorState {
+    abstract void Execute(Warrior w);
 }

@@ -1,4 +1,4 @@
 package Warrior;
 
-public class AttackState {
+public class AttackState extends Warrior{
 }

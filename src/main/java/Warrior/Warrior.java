@@ -1,4 +1,4 @@
-package Game;
+package Warrior;
 
 import System.GameInfo.CharacterType;
 
@@ -46,6 +46,7 @@ public class Warrior {
     public Status Status;
 
     public Warrior Target;
+    public State
 
     public Warrior(){
 

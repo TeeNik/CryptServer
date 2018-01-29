@@ -1,4 +1,4 @@
-package Game;
+package Warrior;
 
 public class WarriorModel {
 }

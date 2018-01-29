@@ -1,6 +1,6 @@
 package SocketObject;
 
-import Game.Warrior;
+import Warrior.Warrior;
 
 /**
  * Created by Yan on 28.11.2017.
